@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>ProofWork | Verified Skill Passport for Electricians in Bengaluru</title>
+    <meta name="title" content="ProofWork | Verified Skill Passport for Electricians in Bengaluru" />
+    <meta name="description" content="ProofWork gives informal electricians in Bengaluru a verifiable digital skill passport via 60-second video assessment, human confirmation, and tamper-evident QR codes." />
+    <meta name="keywords" content="electrician, Bengaluru, skill passport, BESCOM, trade certification, vocational verification, informal workers, electrician jobs" />
+    <meta name="author" content="Team Blizzard, AMC Engineering College" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://proofwork.in/" />
+    <meta property="og:title" content="ProofWork | Your Skill, Verified" />
+    <meta property="og:description" content="A 60-second task video gives Bengaluru's informal electricians a tamper-evident QR skill passport and connects them to nearby contractor jobs." />
+    <meta property="og:image" content="/favicon.svg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://proofwork.in/" />
+    <meta property="twitter:title" content="ProofWork | Your Skill, Verified" />
+    <meta property="twitter:description" content="Verifiable skill passports for electricians. Human-confirmed, assistive AI scored, QR powered." />
+    <meta property="twitter:image" content="/favicon.svg" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-brand-700 selection:text-white min-h-[100dvh]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.log('SW registration note:', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
