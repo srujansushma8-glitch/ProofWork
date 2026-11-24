@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Shield, Smartphone, ArrowRight, CheckCircle2, UserCheck, Briefcase } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
@@ -47,21 +47,29 @@ export const AuthScreen: React.FC = () => {
     <div className="min-h-screen bg-slate-50 flex flex-col justify-between p-4 sm:p-6 max-w-md mx-auto">
       {/* Top Header */}
       <div className="pt-4">
-        {/* Language selector pills */}
-        <div className="flex justify-end gap-1 mb-6">
-          {(['en', 'kn', 'hi'] as const).map((lang) => (
-            <button
-              key={lang}
-              onClick={() => setLanguage(lang)}
-              className={`px-3 py-1 text-xs font-medium rounded-full border transition-colors ${
-                language === lang
-                  ? 'bg-brand-800 text-white border-brand-800'
-                  : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-100'
-              }`}
-            >
-              {lang === 'en' ? 'English' : lang === 'kn' ? 'ಕನ್ನಡ' : 'हिन्दी'}
-            </button>
-          ))}
+        {/* Navigation & Language selector */}
+        <div className="flex items-center justify-between mb-6">
+          <Link
+            to="/"
+            className="text-xs font-semibold text-slate-500 hover:text-brand-800 transition-colors inline-flex items-center gap-1"
+          >
+            ← {language === 'kn' ? 'ಮುಖಪುಟ' : language === 'hi' ? 'मुख्य पृष्ठ' : 'Landing Page'}
+          </Link>
+          <div className="flex gap-1">
+            {(['en', 'kn', 'hi'] as const).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setLanguage(lang)}
+                className={`px-3 py-1 text-xs font-medium rounded-full border transition-colors ${
+                  language === lang
+                    ? 'bg-brand-800 text-white border-brand-800'
+                    : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-100'
+                }`}
+              >
+                {lang === 'en' ? 'English' : lang === 'kn' ? 'ಕನ್ನಡ' : 'हिन्दी'}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Brand Card */}
@@ -72,7 +80,10 @@ export const AuthScreen: React.FC = () => {
           <h1 className="text-2xl font-bold text-ink-950 tracking-tight font-sans">
             {t.appName}
           </h1>
-          <p className="text-xs font-mono text-brand-800 tracking-wider uppercase mt-1">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-[10px] font-bold tracking-wider uppercase mt-2">
+            <span>Step 2: Phone & Credential Verification</span>
+          </div>
+          <p className="text-xs font-mono text-brand-800 tracking-wider uppercase mt-2">
             {t.tagline}
           </p>
           <p className="text-sm text-slate-600 mt-2 px-2">

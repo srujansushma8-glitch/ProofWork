@@ -70,7 +70,7 @@ export const LandingPage: React.FC = () => {
                 {/* Primary & Secondary Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                   <Link
-                    to="/app"
+                    to="/auth"
                     className="touch-target flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-brand-800 hover:bg-brand-900 text-white font-bold text-sm shadow-md transition-all active:scale-[0.99]"
                   >
                     <span>{t.landing.hero.workerCta}</span>
@@ -322,7 +322,7 @@ export const LandingPage: React.FC = () => {
 
                 <div className="pt-2">
                   <Link
-                    to="/app"
+                    to="/auth"
                     className="w-full touch-target flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-brand-800 hover:bg-brand-900 text-white font-semibold text-xs shadow-xs transition-colors"
                   >
                     <span>{t.landing.audiences.workerCta}</span>
@@ -587,7 +587,7 @@ export const LandingPage: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
               <Link
-                to="/app"
+                to="/auth"
                 className="w-full sm:w-auto touch-target flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-white hover:bg-slate-100 text-brand-950 font-bold text-sm shadow-md transition-colors"
               >
                 <span>{t.landing.ctaBand.workerBtn}</span>

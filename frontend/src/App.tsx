@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
@@ -20,6 +20,35 @@ import { SettingsScreen } from './screens/worker/SettingsScreen';
 import { VerifierScreen } from './screens/verifier/VerifierScreen';
 import { PublicPassportScreen } from './screens/public/PublicPassportScreen';
 import { ContractorDashboard } from './screens/contractor/ContractorDashboard';
+
+// Module-scoped flag: resets to true on every browser page load/refresh
+let isFirstLoadSinceRefresh = true;
+
+// Global handler: on browser reload/refresh, always resets to Landing Page ("/") and clears cached session
+// so the presentation flow (1. Landing Page -> 2. Verification Page -> 3. Main Home Screen) starts fresh.
+const RefreshResetHandler: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  useEffect(() => {
+    if (isFirstLoadSinceRefresh) {
+      isFirstLoadSinceRefresh = false;
+      const isDirectExternalLink =
+        location.pathname.startsWith('/p/') ||
+        location.pathname.startsWith('/verify/');
+
+      if (!isDirectExternalLink) {
+        logout();
+        if (location.pathname !== '/') {
+          navigate('/', { replace: true });
+        }
+      }
+    }
+  }, [location.pathname, navigate, logout]);
+
+  return null;
+};
 
 // Layout container
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -56,7 +85,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, isAuthenticated } = useAuth();
   if (!isAuthenticated && !user) {
-    return <Navigate to="/auth" replace />;
+    return <Navigate to="/" replace />;
   }
   return <>{children}</>;
 };
@@ -66,6 +95,7 @@ export function App() {
     <BrowserRouter>
       <LanguageProvider>
         <AuthProvider>
+          <RefreshResetHandler />
           <AppLayout>
             <Routes>
               {/* 1. Public Landing Page at "/" */}

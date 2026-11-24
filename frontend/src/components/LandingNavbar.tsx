@@ -78,7 +78,7 @@ export const LandingNavbar: React.FC = () => {
 
           {/* Primary CTA: Worker Get Verified */}
           <Link
-            to="/app"
+            to="/auth"
             className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded-lg bg-brand-800 hover:bg-brand-900 text-white transition-colors shadow-xs"
           >
             <UserCheck className="w-3.5 h-3.5" />
@@ -128,7 +128,7 @@ export const LandingNavbar: React.FC = () => {
           </nav>
           <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
             <Link
-              to="/app"
+              to="/auth"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full touch-target flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-brand-800 text-white text-sm font-semibold text-center"
             >
